@@ -1,0 +1,72 @@
+Dart me factory keyword aur factory constructor ka use tab hota hai jab aap ek class ke object creation ko customize karna chahte ho. Jo code aapne share kiya hai:
+
+dart
+Copy code
+factory DbTestImagePDF() => _instance;
+Yah ek factory constructor hai jo ensure karta hai ki hamesha ek hi instance return ho. Yeh pattern Singleton ko implement karne ke liye use hota hai.
+
+Iska Use Kyo Karte Hain?
+Ek Hi Instance Return Karna:
+Jab hume ensure karna ho ki class ka sirf ek hi instance create ho (Singleton pattern), tab factory constructor ka use hota hai. Is case me DbTestImagePDF ka factory constructor hamesha _instance return karega, jo ek pre-created object hai.
+
+Instance Creation Ko Control Karna:
+Factory constructor ke through aap customize kar sakte ho ki object kab aur kaise create hoga. Agar object already bana hua hai, to wahi return karega, otherwise ek naya object create karega.
+
+Performance Optimization:
+Naye instance banane ki jagah, ek hi existing instance ko reuse karke memory aur performance ka optimization hota hai.
+
+Encapsulation of Object Creation Logic:
+Object creation ka logic class ke andar hide hota hai. Isse application code clean aur maintainable rehta hai.
+
+Code Example in Dart
+dart
+Copy code
+class DbTestImagePDF {
+  // Private static instance
+  static final DbTestImagePDF _instance = DbTestImagePDF._privateConstructor();
+
+  // Private constructor
+  DbTestImagePDF._privateConstructor();
+
+  // Factory constructor to return the single instance
+  factory DbTestImagePDF() => _instance;
+
+  void printMessage() {
+    print("Singleton instance of DbTestImagePDF.");
+  }
+}
+
+void main() {
+  var obj1 = DbTestImagePDF();
+  var obj2 = DbTestImagePDF();
+
+  obj1.printMessage();
+
+  // Check if both instances are the same
+  print(obj1 == obj2); // Output: true
+}
+Step-by-Step Explanation:
+Private Constructor:
+_privateConstructor ensure karta hai ki class ka object direct new keyword se create na ho.
+
+Static Instance:
+_instance ek static variable hai jo class ka ek hi object store karega.
+
+Factory Constructor:
+factory DbTestImagePDF() hamesha _instance return karega. Agar instance already bana hai, to wahi return hoga, otherwise ek baar _privateConstructor ke through create karega.
+
+Real-Life Example in Hindi:
+Samajhiye ki aapka ek Database Connection hai jo application ke alag-alag parts me use ho raha hai. Agar har jagah naye connections banaye, to performance aur memory issue hoga. Singleton factory constructor ka use karke aap ek hi connection object ko sab jagah share kar sakte ho.
+
+Is code me:
+
+dart
+Copy code
+factory DbTestImagePDF() => _instance;
+_instance ek hi database connection ko represent kar raha hai jo hamesha return hoga.
+
+
+
+
+
+
